@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAWAQ | A Little Moment of Calm</title>
+  <meta name="description" content="Create thoughtful breakfast and coffee baskets with RAWAQ.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/illustrations.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <button class="brand" type="button" data-open-screen="1" aria-label="RAWAQ home">
+      <span class="brand-mark" aria-hidden="true">r</span>
+      <span class="brand-word">RAWAQ</span>
+    </button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <button type="button" class="nav-link active" data-open-screen="1">Home</button>
+      
+      <button type="button" class="nav-link" data-open-screen="10">Your profile</button>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" type="button" data-open-screen="8" aria-label="Review your basket" title="Your basket">
+        <span class="header-basket-icon" data-art="basket-line"></span><span id="header-basket-count" class="basket-count">0</span>
+      </button>
+      <button class="button button-outline logout-button" id="logout-button" type="button">Logout</button>
+      <button class="menu-button" id="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- SCREEN 1: HOME PAGE -->
+    <section class="screen active" id="screen-1" data-screen-number="1" aria-labelledby="home-title">
+      <div class="hero container">
+        <div class="hero-copy">
+          <p class="eyebrow">breakfast, coffee &amp; little gifts</p>
+          <h1 id="home-title">one basket, a<br><em>thousand feeling.</em></h1>
+          <p class="hero-description">A little moment of calm, thoughtfully gathered and ready to share.</p>
+          <button class="button button-primary" type="button" data-builder-start>Start now <span aria-hidden="true">→</span></button>
+          <div class="hero-note"><span class="note-dot"></span> Made for slow mornings and kind gestures.</div>
+        </div>
+        <div class="hero-art"><div class="hero-art-svg" data-art="hero"></div><p class="art-caption">a little moment<br>of calm</p></div>
+      </div>
+
+      <section class="section-block container" aria-labelledby="featured-title">
+        <div class="section-heading featured-centered-heading">
+          <div><p class="eyebrow">picked with care</p><h2 id="featured-title">Featured baskets</h2></div>
+          <button class="text-link" type="button" data-open-screen="3">View all baskets <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="basket-grid compact-grid featured-centered-grid" id="home-basket-grid"></div>
+      </section>
+
+      <section class="soft-band" id="brand-about">
+        <div class="container two-column-band">
+          <div><p class="eyebrow">your idea, your basket</p><h2>A thoughtful start<br>to someone's day.</h2></div>
+          <div><p>Choose a budget, select a style, add their favourite breakfast and coffee treats, and finish with a message that feels like you.</p></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- SCREEN 2: AUTHENTICATION - SIGN UP OR LOG IN -->
+    <section class="screen" id="screen-2" data-screen-number="2" aria-labelledby="auth-title">
+      <div class="container narrow-page login-page">
+        <div class="page-heading"><p class="eyebrow">welcome in</p><h1 id="auth-title">Let’s create something thoughtful.</h1><p>Create an account or log in to start building your basket.</p></div>
+        <div class="auth-switch" role="tablist" aria-label="Choose authentication option">
+          <button class="auth-switch-button active" id="show-login" type="button" role="tab" aria-selected="true" aria-controls="login-panel">Log In</button>
+          <button class="auth-switch-button" id="show-signup" type="button" role="tab" aria-selected="false" aria-controls="signup-panel">Create an Account</button>
+        </div>
+        <div class="auth-panel" id="login-panel" role="tabpanel" aria-labelledby="show-login">
+          <form id="login-form" class="form-card">
+            <h2>Welcome back</h2>
+            <p class="small-muted">Already have a RAWAQ account? Sign in below.</p>
+            <label>Email address<input name="loginEmail" type="email" placeholder="you@example.com" autocomplete="email" required></label>
+            <label>Password<span class="password-field"><input name="loginPassword" type="password" placeholder="Enter your password" autocomplete="current-password" required minlength="4"><button type="button" class="toggle-password" data-toggle-password aria-label="Show password" aria-pressed="false">Show</button></span></label>
+            <p class="small-muted">Academy demo: a valid email and password start a local demo session. No password is stored and no account service is connected.</p>
+            <button class="button button-primary full-button" type="submit">Log in</button>
+            <p id="login-feedback" class="form-feedback" aria-live="polite"></p>
+            <p class="auth-switch-prompt">New to RAWAQ? <button type="button" class="text-button" data-auth-switch="signup">Create an account</button></p>
+          </form>
+        </div>
+        <div class="auth-panel" id="signup-panel" role="tabpanel" aria-labelledby="show-signup" hidden>
+          <form id="signup-form" class="form-card">
+            <h2>Create your RAWAQ account</h2>
+            <p class="small-muted">Join RAWAQ to create and personalize your own gift basket.</p>
+            <label>Full name<input name="signupName" type="text" placeholder="Your full name" autocomplete="name" required minlength="2"></label>
+            <label>Email address<input name="signupEmail" type="email" placeholder="you@example.com" autocomplete="email" required></label>
+            <label>Gender<select name="signupGender" required><option value="" selected disabled>Choose your gender</option><option value="Male">Male</option><option value="Female">Female</option></select></label>
+            <label>Create password<span class="password-field"><input name="signupPassword" type="password" placeholder="At least 4 characters" autocomplete="new-password" required minlength="4"><button type="button" class="toggle-password" data-toggle-password aria-label="Show password" aria-pressed="false">Show</button></span></label>
+            <label>Confirm password<span class="password-field"><input name="signupConfirmPassword" type="password" placeholder="Re-enter your password" autocomplete="new-password" required minlength="4"><button type="button" class="toggle-password" data-toggle-password aria-label="Show password" aria-pressed="false">Show</button></span></label>
+            <p class="small-muted">Academy demo only: this form does not create a permanent account or send your details to a server.</p>
+            <button class="button button-primary full-button" type="submit">Create account and build your basket →</button>
+            <p id="signup-feedback" class="form-feedback" aria-live="polite"></p>
+            <p class="auth-switch-prompt">Already have an account? <button type="button" class="text-button" data-auth-switch="login">Log in</button></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: READY-MADE BASKETS -->
+    <section class="screen" id="screen-3" data-screen-number="3" aria-labelledby="ready-title">
+      <div class="container">
+        <div class="page-heading page-heading-row"><div><p class="eyebrow">ready when you are</p><h1 id="ready-title">A basket for every kind of morning.</h1><p>Explore ready-made combinations, then choose one to review.</p></div><button class="button button-primary" type="button" data-builder-start>Build your own</button></div>
+        <div class="filter-row" id="basket-filters" aria-label="Basket filters">
+          <button type="button" class="filter-chip active" data-basket-filter="All">All baskets</button>
+          <button type="button" class="filter-chip" data-basket-filter="Breakfast">Breakfast</button>
+          <button type="button" class="filter-chip" data-basket-filter="Coffee">Coffee</button>
+          <button type="button" class="filter-chip" data-basket-filter="Combination">Breakfast & coffee</button>
+        </div>
+        <div class="basket-grid" id="ready-basket-grid"></div>
+        <p class="small-muted">Basket names, contents and prices are sample catalogue data for this design stage. The Sick Day Basket is one optional theme, not the focus of RAWAQ.</p>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: BUILDER STEP 1 - BUDGET -->
+    <section class="screen builder-screen" id="screen-4" data-screen-number="4" aria-labelledby="budget-title">
+      <div class="container builder-container">
+        <div class="page-heading"><p class="eyebrow">step one</p><h1 id="budget-title">First, choose your budget.</h1><p>A little guide for building a basket that feels right for you.</p></div>
+        <div class="builder-stepper" aria-label="Basket builder progress"><button type="button" class="step active" data-step-screen="4" aria-label="Go to budget step"><span>1</span><small>Budget</small></button><i></i><button type="button" class="step" data-step-screen="5" aria-label="Go to basket style step"><span>2</span><small>Basket style</small></button><i></i><button type="button" class="step" data-step-screen="6" aria-label="Go to products step"><span>3</span><small>Products</small></button><i></i><button type="button" class="step" data-step-screen="7" aria-label="Go to message step"><span>4</span><small>Message</small></button><i></i><button type="button" class="step" data-step-screen="8" aria-label="Go to order details and delivery step"><span>5</span><small>Order &amp; delivery</small></button></div>
+        <div class="budget-layout">
+          <div class="form-card budget-card">
+            <p class="eyebrow">your budget</p><h2>What is your budget?</h2><p class="muted">Pick a starting point. Your product total will update as you add items.</p>
+            <div class="budget-options" role="radiogroup" aria-label="Choose your budget">
+              <label class="budget-option"><input type="radio" name="budget" value="10"><span>10 <small>JD</small></span></label>
+              <label class="budget-option"><input type="radio" name="budget" value="15" checked><span>15 <small>JD</small></span></label>
+              <label class="budget-option"><input type="radio" name="budget" value="20"><span>20 <small>JD</small></span></label>
+              <label class="budget-option"><input type="radio" name="budget" value="30_plus"><span>30+ <small>JD</small></span></label>
+            </div>
+            <label class="manual-budget-field">Or enter your own budget (JD)<input type="number" id="custom-budget" min="1" step="0.5" placeholder="e.g. 18"></label><div class="budget-summary"><div><span>Your budget</span><strong id="budget-label">15.00 JD</strong></div><div><span>Remaining</span><strong id="budget-remaining">15.00 JD</strong></div></div>
+            <p class="small-muted">The 30+ JD option is flexible; it has no fixed upper limit.</p>
+            <button type="button" class="button button-primary full-button" data-next-screen="5">Next: basket style <span>→</span></button>
+          </div>
+          <div class="side-illustration budget-illustration"><div class="budget-basket" data-art="basket:croissant,coffee_cup,orange_juice"></div><p>A good basket starts<br>with a thoughtful plan.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: BUILDER STEP 2 - BASKET STYLE -->
+    <section class="screen builder-screen" id="screen-5" data-screen-number="5" aria-labelledby="style-title">
+      <div class="container builder-container">
+        <div class="page-heading"><p class="eyebrow">step two</p><h1 id="style-title">Choose your basket style.</h1><p>Pick a category, then choose the design your items will be presented in.</p></div>
+        <div class="builder-stepper" aria-label="Basket builder progress"><button type="button" class="step done" data-step-screen="4" aria-label="Go to budget step"><span>✓</span><small>Budget</small></button><i></i><button type="button" class="step active" data-step-screen="5" aria-label="Go to basket style step"><span>2</span><small>Basket style</small></button><i></i><button type="button" class="step" data-step-screen="6" aria-label="Go to products step"><span>3</span><small>Products</small></button><i></i><button type="button" class="step" data-step-screen="7" aria-label="Go to message step"><span>4</span><small>Message</small></button><i></i><button type="button" class="step" data-step-screen="8" aria-label="Go to order details and delivery step"><span>5</span><small>Order &amp; delivery</small></button></div>
+        <div class="choice-section design-collection-main"><div class="section-heading"><div><p class="eyebrow">pick the one that feels right</p><h2>Choose your basket category.</h2><p class="muted">Select a category to browse its own collection of designs.</p></div></div><div class="category-design-tabs" id="design-category-tabs"><button class="design-category active" type="button" data-design-category="Breakfast Baskets"><span class="mini-art" data-art="croissant"></span>Breakfast Baskets</button><button class="design-category" type="button" data-design-category="Coffee Baskets"><span class="mini-art" data-art="coffee_cup"></span>Coffee Baskets</button><button class="design-category" type="button" data-design-category="Gift Boxes"><span class="mini-art" data-art="gift"></span>Gift Boxes</button></div><div class="design-options-grid" id="basket-design-options"><button class="design-option selected" type="button" data-container="Classic Woven Basket"><span class="design-art design-art-breakfast">🧺<span>🥐 🍊</span></span><strong>Classic Woven</strong><small>Natural woven texture</small></button><button class="design-option" type="button" data-container="Morning Meadow Basket"><span class="design-art design-art-meadow">🌿<span>☕ 🌼</span></span><strong>Morning Meadow</strong><small>Soft sage accents</small></button><button class="design-option" type="button" data-container="Rose Ribbon Basket"><span class="design-art design-art-rose">🎀<span>🍓 🥐</span></span><strong>Rose Ribbon</strong><small>Warm blush ribbon</small></button></div></div>
+        <div class="builder-controls"><button class="button button-outline" type="button" data-back-screen="4">← Back</button><button class="button button-primary" type="button" data-next-screen="6">Next: products →</button></div>
+      </div>
+    </section>
+
+    <!-- SCREEN 6: BUILDER STEP 3 - PRODUCTS -->
+    <section class="screen builder-screen" id="screen-6" data-screen-number="6" aria-labelledby="products-title">
+      <div class="container builder-container">
+        <div class="page-heading"><p class="eyebrow">step three</p><h1 id="products-title">Choose the little things they love.</h1><p>Browse categories and add products. You can adjust the quantities any time.</p></div>
+        <div class="builder-stepper" aria-label="Basket builder progress"><button type="button" class="step done" data-step-screen="4" aria-label="Go to budget step"><span>✓</span><small>Budget</small></button><i></i><button type="button" class="step done" data-step-screen="5" aria-label="Go to basket style step"><span>✓</span><small>Basket style</small></button><i></i><button type="button" class="step active" data-step-screen="6" aria-label="Go to products step"><span>3</span><small>Products</small></button><i></i><button type="button" class="step" data-step-screen="7" aria-label="Go to message step"><span>4</span><small>Message</small></button><i></i><button type="button" class="step" data-step-screen="8" aria-label="Go to order details and delivery step"><span>5</span><small>Order &amp; delivery</small></button></div>
+        <div class="product-builder-layout">
+          <aside class="category-sidebar"><p class="eyebrow">browse</p><button class="category-link active" type="button" data-category="All"><span class="mini-art" data-art="sparkle"></span> <span>All products</span></button><button class="category-link" type="button" data-category="Breakfast"><span class="mini-art" data-art="croissant"></span> <span>Breakfast</span></button><button class="category-link" type="button" data-category="Juice"><span class="mini-art" data-art="orange_juice"></span> <span>Juice</span></button><button class="category-link" type="button" data-category="Coffee"><span class="mini-art" data-art="coffee_cup"></span> <span>Coffee</span></button><button class="category-link" type="button" data-category="Sweets"><span class="mini-art" data-art="cake"></span> <span>Sweets</span></button><button class="category-link" type="button" data-category="Add-ons"><span class="mini-art" data-art="flowers"></span> <span>Add-ons</span></button></aside>
+          <div class="product-browser"><div class="product-browser-heading"><div><p class="eyebrow">freshly picked</p><h2 id="product-category-title">All products</h2></div><span class="product-count" id="product-count">0 items</span></div><div class="product-grid" id="product-grid"></div></div>
+          <aside class="basket-summary-card"><div class="summary-header"><div><p class="eyebrow">your basket</p><h2>A little collection</h2></div><span class="summary-bag" data-art="basket-line"></span></div><div id="summary-product-list" class="summary-product-list"><p class="empty-note">Your selected products will appear here.</p></div><div class="summary-rule"></div><div class="summary-line"><span>Product total</span><strong id="product-total">0.00 JD</strong></div><div class="summary-line"><span>Budget</span><strong id="summary-budget">15.00 JD</strong></div><div class="remaining-panel"><span>Remaining budget</span><strong id="summary-remaining">15.00 JD</strong></div><button type="button" class="button button-primary full-button" data-next-screen="7">Next: message →</button><button type="button" class="button button-quiet full-button" data-back-screen="5">Back to basket style</button><div class="summary-line"><span>Add-ons</span><strong id="summary-addons">0.00 JD</strong></div><div class="summary-line"><span>Delivery fee</span><strong>2.00 JD</strong></div></aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 7: BUILDER STEP 4 - MESSAGE -->
+    <section class="screen builder-screen" id="screen-7" data-screen-number="7" aria-labelledby="extras-title">
+      <div class="container builder-container">
+        <div class="page-heading"><p class="eyebrow">step four</p><h1 id="extras-title">The finishing touches.</h1><p>Add a card with a personal note, or skip it and continue.</p></div>
+        <div class="builder-stepper" aria-label="Basket builder progress"><button type="button" class="step done" data-step-screen="4" aria-label="Go to budget step"><span>✓</span><small>Budget</small></button><i></i><button type="button" class="step done" data-step-screen="5" aria-label="Go to basket style step"><span>✓</span><small>Basket style</small></button><i></i><button type="button" class="step done" data-step-screen="6" aria-label="Go to products step"><span>✓</span><small>Products</small></button><i></i><button type="button" class="step active" data-step-screen="7" aria-label="Go to message step"><span>4</span><small>Message</small></button><i></i><button type="button" class="step" data-step-screen="8" aria-label="Go to order details and delivery step"><span>5</span><small>Order &amp; delivery</small></button></div>
+        <div id="message-panel" class="substep-panel">
+          <div class="message-layout">
+            <div class="message-form form-card"><h2>Would you like a message card?</h2><p class="muted">A card is optional. Tick the box if you want to add one.</p>
+              <label class="check-line card-opt-in"><input type="checkbox" id="wants-card"><span>Yes, add a message card</span></label>
+              <div id="card-options" class="card-options hidden">
+                <div class="card-category-area"><p class="label-like">Choose the card type</p><div class="card-category-tabs" id="card-category-tabs"><button type="button" class="card-category active" data-card-category="Personalized Cards">Personalized Cards</button><button type="button" class="card-category" data-card-category="Birthday Cards">Birthday Cards</button><button type="button" class="card-category" data-card-category="Classic Cards">Classic Cards</button><button type="button" class="card-category" data-card-category="Cute Cards">Cute Cards</button></div><div id="card-design-gallery" class="card-design-gallery"></div><button type="button" class="button button-outline ai-card-button" id="open-ai-card">✧ Create a Card with AI</button><div class="ai-card-panel hidden" id="ai-card-panel"><label>Describe your card<textarea id="ai-card-description" rows="3" placeholder="Describe the look, colours, mood, illustration and style you imagine..."></textarea></label><button type="button" class="button button-primary" id="save-ai-card-prompt">Save design brief</button><p class="small-muted">AI generation and API integration will be added later. This interface is a placeholder for your future prompt.</p></div></div>
+                <label>Message on the card<textarea id="gift-message" rows="4" maxlength="220" placeholder="Write something thoughtful..."></textarea></label><div class="textarea-footer"><span class="small-muted">Keep it personal and kind.</span><span id="message-char-count" class="small-muted">0 / 220</span></div>
+                <button type="button" class="text-link suggest-message" id="suggest-message">Suggest a message idea ✦</button>
+              </div>
+              <div class="builder-controls"><button class="button button-outline" type="button" id="back-to-addons">← Back to products</button><button class="button button-primary" type="button" id="message-continue">Continue →</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 8: ORDER REVIEW / CHECKOUT -->
+    <section class="screen" id="screen-8" data-screen-number="8" aria-labelledby="review-title">
+      <div class="container">
+        <div class="page-heading"><p class="eyebrow">step five</p><h1 id="review-title">One last look before it goes.</h1><p>Check the basket, gift details and delivery information.</p></div>
+        <div class="builder-stepper" aria-label="Basket builder progress"><button type="button" class="step done" data-step-screen="4" aria-label="Go to budget step"><span>✓</span><small>Budget</small></button><i></i><button type="button" class="step done" data-step-screen="5" aria-label="Go to basket style step"><span>✓</span><small>Basket style</small></button><i></i><button type="button" class="step done" data-step-screen="6" aria-label="Go to products step"><span>✓</span><small>Products</small></button><i></i><button type="button" class="step done" data-step-screen="7" aria-label="Go to message step"><span>✓</span><small>Message</small></button><i></i><button type="button" class="step active" data-step-screen="8" aria-label="Go to order details and delivery step"><span>5</span><small>Order &amp; delivery</small></button></div>
+        <form id="checkout-form" class="checkout-layout">
+          <div class="checkout-main">
+            <section class="checkout-card"><div class="checkout-card-heading"><span class="number-badge">01</span><div><h2>Basket contents</h2><p>Everything selected for this basket.</p></div></div><div id="checkout-items" class="checkout-items"></div><div class="checkout-meta"><div><span>Budget</span><strong id="checkout-budget">15.00 JD</strong></div><div><span>Basket concept</span><strong id="checkout-style">Breakfast</strong></div><div><span>Container</span><strong id="checkout-container">Traditional basket</strong></div></div></section>
+            <section class="checkout-card"><div class="checkout-card-heading"><span class="number-badge">02</span><div><h2>Gift details</h2><p id="checkout-card-name">Personal message card</p></div></div><div id="checkout-gift-details" class="gift-summary"></div></section>
+            <section class="checkout-card"><div class="checkout-card-heading"><span class="number-badge">03</span><div><h2>Delivery information</h2><p>Where should the basket go?</p></div></div><label class="check-line gift-check"><input type="checkbox" id="is-gift"><span>Is this a gift?</span></label><div class="form-grid"><label>Full name<input type="text" id="delivery-name" required placeholder="Recipient's full name" autocomplete="name"></label><label>Phone number<input type="tel" id="delivery-phone" required placeholder="07X XXX XXXX" autocomplete="tel"></label><label class="full-width">Location / delivery address<textarea id="delivery-location" rows="2" required placeholder="Area, street and building details"></textarea></label><label class="full-width">Delivery date<input type="date" id="delivery-date" required></label></div></section>
+          </div>
+          <aside class="checkout-total-card"><p class="eyebrow">your order</p><h2>Made with care.</h2><div class="total-lines"><div><span>Products</span><strong id="review-product-total">0.00 JD</strong></div><div><span>Add-ons</span><strong id="review-addon-total">0.00 JD</strong></div><div><span>Delivery fee</span><strong id="review-delivery-fee">2.00 JD</strong></div><div class="grand-total"><span>Total</span><strong id="review-total">0.00 JD</strong></div></div><p class="eyebrow card-selection-label">your card</p><p class="small-muted no-card-note hidden" id="review-no-card">No message card was added.</p><div class="mini-message-card" id="review-mini-card"><span>✿</span><p id="review-mini-message">Your personal message goes here.</p><br></div><div class="summary-line"><span>Remaining budget:</span><strong id="review-remaining">0.00 JD</strong></div><button class="button button-primary full-button" type="submit">Submit request <span>→</span></button><p class="small-muted">Front-end prototype only: no payment, API request or real delivery booking is made.</p><button class="button button-quiet full-button" type="button" id="return-to-message">Back to message</button></aside>
+          
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREEN 9: CONFIRMATION -->
+    <section class="screen" id="screen-9" data-screen-number="9" aria-labelledby="confirmation-title">
+      <div class="container confirmation-wrap"><div class="success-burst"><span class="success-check">✓</span><span class="burst-dot dot-a"></span><span class="burst-dot dot-b"></span><span class="burst-dot dot-c"></span><span class="burst-dot dot-d"></span></div><p class="eyebrow">all done</p><h1 id="confirmation-title">A little moment is on its way.</h1><p class="confirmation-exact">The request has been successfully received.</p><p class="muted">This is a local demo confirmation. The request is kept in this browser only.</p><div id="confirmation-reference" class="confirmation-reference"></div><button class="button button-primary" type="button" data-open-screen="1">Home page</button><button class="button button-outline" type="button" data-builder-start>Build another basket</button></div>
+    </section>
+
+    <!-- SCREEN 10: PROFILE AND RECENT ORDERS -->
+    <section class="screen" id="screen-10" data-screen-number="10" aria-labelledby="profile-title">
+      <div class="container profile-page"><div class="page-heading"><p class="eyebrow">hello again</p><h1 id="profile-title">Your profile.</h1><p>A calm place to review your details and recent basket requests.</p></div><div class="profile-layout"><aside class="profile-card"><div class="profile-avatar">✿</div><p class="eyebrow">your account</p><h2 id="profile-display-name">Welcome to RAWAQ</h2><p id="profile-display-email" class="muted">Your details will appear here after the account API is added.</p><div class="profile-facts"><div><span>Phone</span><strong id="profile-display-phone">Not added</strong></div><div><span>Gender</span><strong id="profile-display-gender">Not added</strong></div></div><button class="button button-outline full-button" type="button" disabled>Profile editing · later stage</button><p class="small-muted">Account data is not connected to a server in this phase.</p></aside><div class="recent-orders-panel"><div class="section-heading"><div><p class="eyebrow">past baskets</p><h2>Your recent orders</h2></div><button class="text-link" type="button" data-open-screen="3">Explore baskets →</button></div><div id="recent-orders-list" class="recent-orders-list"><div class="empty-state"><span data-art="basket-line"></span><h3>No requests yet</h3><p>Your submitted demo requests will appear here in this browser.</p><button type="button" class="button button-primary" data-builder-start>Build your first basket</button></div></div></div></div></div>
+    </section>
+
+    <!-- SCREEN 11: ADMIN CONTROL PANEL -->
+    <section class="screen" id="screen-11" data-screen-number="11" aria-labelledby="admin-title">
+      <div class="container admin-page"><div class="page-heading"><p class="eyebrow">admin preview</p><h1 id="admin-title">Control panel</h1><p>Management layout preview for the next development stage.</p></div><div class="admin-layout"><aside class="admin-sidebar"><div class="admin-side-title">MANAGEMENT</div><button type="button" class="admin-side-link active" data-admin-section="Overview">⌂ <span>Overview</span></button><button type="button" class="admin-side-link" data-admin-section="Breakfast">🥐 <span>Breakfast</span></button><button type="button" class="admin-side-link" data-admin-section="Drinks">☕ <span>Drinks</span></button><button type="button" class="admin-side-link" data-admin-section="Sweets">🍰 <span>Sweets</span></button><button type="button" class="admin-side-link" data-admin-section="Add-ons">✿ <span>Add-ons</span></button><button type="button" class="admin-side-link" data-admin-section="Baskets">▱ <span>Baskets</span></button><button type="button" class="admin-side-link" data-admin-section="Cards">▤ <span>Cards</span></button><button type="button" class="admin-side-link" data-admin-section="Users">♙ <span>Users</span></button></aside><div class="admin-content"><div class="admin-welcome"><div><p class="eyebrow">store summary</p><h2 id="admin-section-title">Overview</h2><p class="muted">These counts use demo data stored in your browser.</p></div><span class="admin-seal">R</span></div><div class="stat-grid"><div class="stat-card"><span>Number of users</span><strong id="admin-user-count">0</strong><small>Local prototype</small></div><div class="stat-card"><span>Number of requests</span><strong id="admin-order-count">0</strong><small>Demo orders only</small></div><div class="stat-card"><span>Ready-made baskets</span><strong>4</strong><small>Sample catalogue</small></div></div><section class="admin-table-card"><div class="section-heading"><div><p class="eyebrow">latest activity</p><h2 id="admin-table-title">Recent requests</h2></div><button type="button" class="text-link" id="refresh-admin">Refresh ↻</button></div><div class="table-scroll"><table><thead><tr><th>Request</th><th>Order date</th><th>Contents</th><th>Total</th><th>Status</th></tr></thead><tbody id="admin-orders-body"><tr><td colspan="5" class="table-empty">No demo requests have been submitted yet.</td></tr></tbody></table></div></section><div class="admin-footnote"><strong>API phase later:</strong> editing products, users, baskets, add-ons and cards requires backend routes and protected admin access. This screen is a UI preview only.</div></div></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><div><span class="footer-brand">RAWAQ</span><p>A Little Moment of Calm.</p></div><p class="footer-tagline">Breakfast, coffee &amp; thoughtful gifts</p><div class="footer-links"><button type="button" data-open-screen="1">Home</button><button type="button" data-open-screen="3">Baskets</button><button type="button" data-open-screen="10">Your profile</button></div></div></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

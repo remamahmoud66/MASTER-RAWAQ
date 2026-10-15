@@ -1,0 +1,113 @@
+erDiagram
+    PRODUCT_CATEGORIES ||--o{ PRODUCTS : "groups"
+    BASKET_CATEGORIES ||--o{ BASKET_DESIGNS : "has designs"
+    CARD_CATEGORIES ||--o{ CARD_DESIGNS : "has designs"
+    READY_MADE_BASKETS ||--|{ READY_MADE_BASKET_ITEMS : "contains"
+    PRODUCTS ||--o{ READY_MADE_BASKET_ITEMS : "included in"
+    USERS o|--o{ ORDERS : "places"
+    READY_MADE_BASKETS o|--o{ ORDERS : "ordered as"
+    BASKET_DESIGNS o|--o{ ORDERS : "presented in"
+    CARD_DESIGNS o|--o{ ORDERS : "optional card"
+    ORDERS ||--o{ ORDER_ITEMS : "contains"
+    PRODUCTS ||--o{ ORDER_ITEMS : "ordered as"
+    ORDERS ||--o{ ORDER_ADD_ONS : "includes"
+    ADD_ONS ||--o{ ORDER_ADD_ONS : "selected as"
+    USERS {
+        int user_id PK
+        varchar full_name
+        varchar email UK
+        varchar password_hash
+        enum gender
+        varchar phone
+        enum role
+        timestamp created_at
+    }
+    PRODUCT_CATEGORIES {
+        int category_id PK
+        varchar category_name UK
+        varchar icon
+    }
+    PRODUCTS {
+        int product_id PK
+        int category_id FK
+        varchar product_name
+        varchar description
+        decimal price
+        varchar icon
+        tinyint is_active
+    }
+    ADD_ONS {
+        int add_on_id PK
+        varchar add_on_name UK
+        varchar description
+        decimal price
+        tinyint is_active
+    }
+    BASKET_CATEGORIES {
+        int basket_category_id PK
+        varchar category_name UK
+        varchar icon
+    }
+    BASKET_DESIGNS {
+        int basket_design_id PK
+        int basket_category_id FK
+        varchar design_name UK
+        varchar description
+        decimal extra_price
+        tinyint is_active
+    }
+    CARD_CATEGORIES {
+        int card_category_id PK
+        varchar category_name UK
+    }
+    CARD_DESIGNS {
+        int card_design_id PK
+        int card_category_id FK
+        varchar design_name UK
+        varchar icon
+        tinyint is_active
+    }
+    READY_MADE_BASKETS {
+        int ready_made_basket_id PK
+        varchar basket_name UK
+        enum theme
+        decimal price
+        tinyint is_active
+    }
+    READY_MADE_BASKET_ITEMS {
+        int ready_made_basket_id PK,FK
+        int product_id PK,FK
+        int quantity
+    }
+    ORDERS {
+        int order_id PK
+        varchar order_reference UK
+        int user_id FK
+        int ready_made_basket_id FK
+        int basket_design_id FK
+        decimal budget_amount
+        tinyint budget_is_flexible
+        int card_design_id FK
+        varchar card_message
+        tinyint is_gift
+        varchar delivery_name
+        varchar delivery_location
+        date delivery_date
+        decimal products_total
+        decimal add_ons_total
+        decimal delivery_fee
+        decimal total_amount
+        enum order_status
+        timestamp created_at
+    }
+    ORDER_ITEMS {
+        int order_id PK,FK
+        int product_id PK,FK
+        int quantity
+        decimal unit_price
+    }
+    ORDER_ADD_ONS {
+        int order_id PK,FK
+        int add_on_id PK,FK
+        decimal unit_price
+    }
